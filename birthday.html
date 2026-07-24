@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday! 🎂</title>
+  <style>
+    /* Centers everything on the screen */
+    body {
+      background-color: #ffeff5; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Container for the whole mail element - SCALED UP for guaranteed text space */
+    .envelope-wrapper {
+      position: relative;
+      width: 400px;
+      height: 320px;
+      cursor: pointer;
+    }
+
+    /* The back of the envelope */
+    .envelope {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ff9a9e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      border-radius: 4px;
+      z-index: 1; 
+    }
+
+    /* The bottom fold of the envelope */
+    .envelope-front {
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 200px 190px 200px; /* Adjusted proportions */
+      border-color: transparent transparent #ff7eb3 transparent;
+      z-index: 3; 
+      pointer-events: none; 
+    }
+
+    /* The side folds of the envelope */
+    .envelope-sides {
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 160px 200px 160px 200px;
+      border-color: transparent #ff8a9f transparent #ff8a9f;
+      z-index: 3; 
+      pointer-events: none;
+    }
+
+    /* The top flap that opens */
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 170px 200px 0 200px;
+      border-color: #ff5277 transparent transparent transparent;
+      z-index: 4; 
+      transform-origin: top;
+      transition: transform 0.4s ease-in-out, z-index 0.2s;
+    }
+
+    /* The letter hidden inside */
+    .letter {
+      position: absolute;
+      bottom: 10px; 
+      left: 20px;
+      width: 360px;
+      height: 300px; /* Much taller so text never runs out */
+      background-color: #1a1a1a; 
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 2; 
+      transition: transform 0.6s ease-in-out 0.2s;
+      padding: 25px 25px 40px 25px; /* Keeps text away from edges */
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    /* Text styling */
+    .letter h2 {
+      margin: 0 0 15px 0; 
+      color: #ff5277;
+      font-size: 24px; 
+    }
+
+    .letter p {
+      font-size: 12px; 
+      color: #f0f0f0; 
+      line-height: 1.5;
+      margin: 0 0 12px 0; 
+    }
+
+    /* ANIMATION CLASSES */
+    .open .flap {
+      transform: rotateX(180deg);
+      z-index: 1; 
+    }
+
+    .open .letter {
+      /* Perfect translation: High enough to read, but firmly tucked behind the front envelope fold! */
+      transform: translateY(-160px); 
+    }
+
+    /* Bouncing text */
+    .instruction {
+      position: absolute;
+      bottom: -45px;
+      width: 100%;
+      text-align: center;
+      color: #888;
+      font-size: 15px;
+      font-weight: bold;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+    <div class="envelope"></div>
+    <div class="flap"></div>
+    <div class="envelope-sides"></div>
+    <div class="envelope-front"></div>
+    
+    <!-- YOUR MESSAGE -->
+    <div class="letter">
+      <h2>Happy Birthday! 🎂</h2>
+      <p>Dear <strong>Naomi</strong>,</p>
+      <p>Happy Birthday! I just wanted to send a little extra love your way today. I'm so glad we are still in each other's lives and that I get to call you a friend. You deserve the absolute best today and always. Eat lots of cake and have a wonderful birthday, Naomi</p>
+      <p>Warmly,<br><strong>Divya</strong></p>
+    </div>
+
+    <div class="instruction">Tap the envelope to open! 💌</div>
+  </div>
+
+</body>
+</html>
